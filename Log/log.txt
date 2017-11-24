@@ -1,0 +1,9 @@
+{date('d/m/Y H:i:s')} : Erro -> {date('d/m/Y H:i:s')} : Erro -> SQLSTATE[23503]: Foreign key violation: 7 ERRO:  atualização ou exclusão em tabela "tb_periodos" viola restrição de chave estrangeira "tb_turmas_periodo_id_fkey" em "tb_turmas"
+DETAIL:  Chave (id)=(1) ainda é referenciada pela tabela "tb_turmas".date('d/m/Y H:i:s') : Erro -> SQLSTATE[23503]: Foreign key violation: 7 ERRO:  atualização ou exclusão em tabela "tb_periodos" viola restrição de chave estrangeira "tb_turmas_periodo_id_fkey" em "tb_turmas"
+DETAIL:  Chave (id)=(1) ainda é referenciada pela tabela "tb_turmas".
+24/11/2017 17:05:48 : Erro -> SQLSTATE[23503]: Foreign key violation: 7 ERRO:  atualização ou exclusão em tabela "tb_periodos" viola restrição de chave estrangeira "tb_turmas_periodo_id_fkey" em "tb_turmas"
+DETAIL:  Chave (id)=(1) ainda é referenciada pela tabela "tb_turmas".
+24/11/2017 17:10:14 : Erro -> SQLSTATE[23503]: Foreign key violation: 7 ERRO:  atualização ou exclusão em tabela "tb_periodos" viola restrição de chave estrangeira "tb_turmas_periodo_id_fkey" em "tb_turmas"
+DETAIL:  Chave (id)=(1) ainda é referenciada pela tabela "tb_turmas".
+24/11/2017 17:11:57 : Erro -> SQLSTATE[23503]: Foreign key violation: 7 ERRO:  atualização ou exclusão em tabela "tb_periodos" viola restrição de chave estrangeira "tb_turmas_periodo_id_fkey" em "tb_turmas"
+DETAIL:  Chave (id)=(1) ainda é referenciada pela tabela "tb_turmas".

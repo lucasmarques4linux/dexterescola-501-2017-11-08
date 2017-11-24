@@ -1,6 +1,25 @@
 <div class="page-header">
     <h2>Gerenciar <small>Períodos</small></h2>		
-</div>	
+</div>
+
+<?php if(isset($_SESSION['erro'])): ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php
+        echo $_SESSION['erro'];
+        unset($_SESSION['erro']);
+        ?>
+    </div>
+<?php endif?>
+<?php if(isset($_SESSION['sucesso'])): ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php
+        echo $_SESSION['sucesso'];
+        unset($_SESSION['sucesso']);
+        ?>
+    </div>
+<?php endif?>
 
 <table class="table table-striped">
     <thead>

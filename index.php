@@ -14,8 +14,9 @@ if (isset($_GET['r'])) {
 if (isset($_GET['f'])) {
 	$funcao = $_GET['f'];
 } else {
-	$funcao = 'index';
+	$funcao = 'home';
 }
+
 
 $frontController = new FrontController();
 $frontController->rodar($rota,$funcao);

@@ -26,15 +26,24 @@ class Periodo
 		return $this->descricao;
 	}
 
-	public function save(){
+	// public function save(){
+	// 	$dao = new PeriodoDAO();
+	// 	if (is_null($this->id)) {
+	// 		$dao->insert($this);
+	// 	} else {
+	// 		$dao->update($this);
+	// 	}
+	// }
+	
+	public function insert(){
 		$dao = new PeriodoDAO();
-		if (is_null($this->id)) {
-			$dao->insert($this);
-		} else {
-			$dao->update($this);
-		}
+		$dao->insert($this);
 	}
-	public function remove(){
+	public function update(){
+		$dao = new PeriodoDAO();
+		$dao->update($this);
+	}
+	public function delete(){
 		$dao = new PeriodoDAO();
 		$dao->delete($this);
 	}

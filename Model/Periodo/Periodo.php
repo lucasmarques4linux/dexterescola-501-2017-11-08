@@ -9,9 +9,7 @@ class Periodo
 	private $id;
 	private $descricao;
 
-	public function __construct($id,$descricao){
-		$this->id = $id;
-		$this->descricao = $descricao;
+	public function __construct(){
 	}
 
 	public function setId($id){

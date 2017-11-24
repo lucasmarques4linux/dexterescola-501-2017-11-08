@@ -10,6 +10,11 @@ if (isset($_GET['r'])) {
 } else {
 	$rota = 'home';
 }
+if (isset($_GET['f'])) {
+	$funcao = $_GET['f'];
+} else {
+	$funcao = 'index';
+}
 
 $frontController = new FrontController();
-$frontController->rodar($rota);
+$frontController->rodar($rota,$funcao);

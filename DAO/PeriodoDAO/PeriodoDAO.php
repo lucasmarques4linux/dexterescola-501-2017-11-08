@@ -23,7 +23,10 @@ class PeriodoDAO
 
 		$periodos = [];
 		foreach ($result as $item) {			
-			 $periodos[] = new Periodo($item['id'],$item['descricao']);
+			 $periodo = new Periodo();
+			 $periodo->setId($item['id']);
+			 $periodo->setDescricao($item['descricao']);
+			 $periodos[] = $periodo;
 		}
 
 		return $periodos;
@@ -94,6 +97,10 @@ class PeriodoDAO
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		return new Periodo($result['id'],$result['descricao']);
+		 $periodo = new Periodo();
+		 $periodo->setId($result['id']);
+		 $periodo->setDescricao($result['descricao']);
+
+		return $periodo;
 	}
 }

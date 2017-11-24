@@ -10,7 +10,7 @@ class PeriodoController
 	public static function home(){
 		$periodos = Periodo::all();
 		$dados = [
-			'periodos' => $periodos
+			'periodos' => $periodos,
 		];
 		$view = new BaseView();
 		$view->render('Periodo','index',$dados);

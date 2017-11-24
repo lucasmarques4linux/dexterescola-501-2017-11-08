@@ -5,9 +5,12 @@ namespace DAO\PeriodoDAO;
 use DAO\Conexao\Conexao;
 use PDO;
 use Model\Periodo\Periodo;
+use PDOException;
+
 
 class PeriodoDAO
 {
+
 	private $con = null;
 
 	public function __construct(){
@@ -23,7 +26,10 @@ class PeriodoDAO
 
 		$periodos = [];
 		foreach ($result as $item) {			
-			 $periodos[] = new Periodo($item['id'],$item['descricao']);
+			 $periodo = new Periodo();
+			 $periodo->setId($item['id']);
+			 $periodo->setDescricao($item['descricao']);
+			 $periodos[] = $periodo;
 		}
 
 		return $periodos;
@@ -41,9 +47,11 @@ class PeriodoDAO
 			$stmt->execute();
 
 			$this->con->commit();	
+			$_SESSION['sucesso'] = "Salvo Com Sucesso";
 		} catch (PDOException $e) {
 			$this->con->rollback();
-			die($e->getMessage);
+			// $this->log("Erro -> {$e->getMessage()}") ;
+			$_SESSION['erro'] = "Erro ao Atualizar Periodo";
 		}
 	}
 
@@ -60,10 +68,12 @@ class PeriodoDAO
 
 			$stmt->execute();
 
-			$this->con->commit();	
+			$this->con->commit();
+			$_SESSION['sucesso'] = "Atualizado Com Sucesso";	
 		} catch (PDOException $e) {
 			$this->con->rollback();
-			die($e->getMessage);
+			// $this->log("Erro -> {$e->getMessage()}") ;
+			$_SESSION['erro'] = "Erro ao Atualizar Periodo";
 		}
 	}
 
@@ -78,10 +88,12 @@ class PeriodoDAO
 
 			$stmt->execute();
 
-			$this->con->commit();	
+			$this->con->commit();
+			$_SESSION['sucesso'] = "Excluido Com Sucesso";	
 		} catch (PDOException $e) {
 			$this->con->rollback();
-			die($e->getMessage);
+			// $this->log("Erro -> {$e->getMessage()}") ;
+			$_SESSION['erro'] = "Erro ao Excluir Periodo";
 		}
 	}
 
@@ -94,6 +106,10 @@ class PeriodoDAO
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		return new Periodo($result['id'],$result['descricao']);
+		 $periodo = new Periodo();
+		 $periodo->setId($result['id']);
+		 $periodo->setDescricao($result['descricao']);
+
+		return $periodo;
 	}
 }

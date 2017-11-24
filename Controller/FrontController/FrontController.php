@@ -13,7 +13,7 @@ class FrontController
 				break;
 			
 			default:
-				# code...
+				HomeController::erro();;
 				break;
 		}
 	}

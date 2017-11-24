@@ -10,9 +10,31 @@
 <body>
 
 <header>
-	<nav class="navbar fixed-top navbar-light bg-light">
-		<a class="navbar-brand" href="#">Dexter Escola</a>
-	</nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="?r=home">Dexter Escola</a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="?r=home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?r=alunos">Alunos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?r=matriculas">Matriculas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?r=turmas">Turmas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?r=cursos">Cursos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?r=periodos">Periodos</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 </header>
 
 <div class="container">

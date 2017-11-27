@@ -38,6 +38,9 @@ class PeriodoDAO
 	public function insert(Periodo $periodo){
 		$sql = "INSERT INTO tb_periodos (descricao) VALUES (:descricao)";
 
+		strip_tags($periodo->getDescricao());
+		trim($periodo->getDescricao());
+
 		try {
 			$descricao = $periodo->getDescricao();
 			$this->con->beginTransaction();

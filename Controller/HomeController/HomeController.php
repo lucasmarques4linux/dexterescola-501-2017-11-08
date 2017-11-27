@@ -15,4 +15,8 @@ class HomeController
 		$view = new BaseView();
 		$view->render('Home','404');
 	}
+	public static function teste(){
+		$view = new BaseView();
+		$view->render('Home','teste',["var1" => "Olá Mundo", "var2" => "Hello World!"]);
+	}
 }

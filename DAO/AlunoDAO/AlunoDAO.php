@@ -52,12 +52,12 @@ class AlunoDAO
 			$dt_nasc = $aluno->getDtNasc();
 			$this->con->beginTransaction();
 			$stmt = $this->con->prepare($sql);
-			$stmt->bindValue(":nome", $nome);
-			$stmt->bindValue(":email", $email);
-			$stmt->bindValue(":senha", $senha);
-			$stmt->bindValue(":cpf", $cpf);
-			$stmt->bindValue(":rg", $rg);
-			$stmt->bindValue(":dt_nasc", $dt_nasc);
+			$stmt->bindParam(":nome", $nome);
+			$stmt->bindParam(":email", $email);
+			$stmt->bindParam(":senha", $senha);
+			$stmt->bindParam(":cpf", $cpf);
+			$stmt->bindParam(":rg", $rg);
+			$stmt->bindParam(":dt_nasc", $dt_nasc);
 
 			$stmt->execute();
 
@@ -71,7 +71,7 @@ class AlunoDAO
 	}
 
 	public function update(Aluno $aluno){
-		$sql = "UPDATE tb_alunos SET (nome = :nome,email = :email,senha = :senha,cpf = :cpf,rg = :rg,dt_nasc = :dt_nasc) WHERE id = :id";
+		$sql = "UPDATE tb_alunos SET nome = :nome, email = :email,senha = :senha,cpf = :cpf,rg = :rg WHERE id = :id";
 
 		try {
 			$id = $aluno->getId();
@@ -80,24 +80,27 @@ class AlunoDAO
 			$senha = $aluno->getSenha();
 			$cpf = $aluno->getCpf();
 			$rg = $aluno->getRg();
-			$dt_nasc = $aluno->getDtNasc();
+			// $dt_nasc = $aluno->getDtNasc();
+
 			$this->con->beginTransaction();
 			$stmt = $this->con->prepare($sql);
-			$stmt->bindValue(":nome", $nome);
-			$stmt->bindValue(":email", $email);
-			$stmt->bindValue(":senha", $senha);
-			$stmt->bindValue(":cpf", $cpf);
-			$stmt->bindValue(":rg", $rg);
-			$stmt->bindValue(":dt_nasc", $dt_nasc);
+
+			$stmt->bindParam(":nome", $nome);
+			$stmt->bindParam(":email", $email);
+			$stmt->bindParam(":senha", $senha);
+			$stmt->bindParam(":cpf", $cpf);
+			$stmt->bindParam(":rg", $rg);
+			// $stmt->bindParam(":dt_nasc", $dt_nasc);
 			$stmt->bindParam(":id", $id);
 
 			$stmt->execute();
-
 			$this->con->commit();
 			$_SESSION['sucesso'] = "Atualizado Com Sucesso";	
 		} catch (PDOException $e) {
 			$this->con->rollback();
 			// $this->log("Erro -> {$e->getMessage()}") ;
+			print_r($e->getMessage());
+			die();
 			$_SESSION['erro'] = "Erro ao Atualizar Periodo";
 		}
 	}

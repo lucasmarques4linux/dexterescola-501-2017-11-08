@@ -31,8 +31,8 @@
 		      <th scope="row"><?= $periodo->getId();?></th>
 		      <td><?= $periodo->getDescricao();?></td>
 		      <td>
-              <a class="btn btn-info" href="?r=periodos&f=edit&id=<?= $periodo->getId(); ?>" role="button">Editar</a>
-              <form method="POST" action="?r=periodos&f=delete">
+              <a class="btn btn-info" href="/3/periodos/edit/<?= $periodo->getId(); ?>" role="button">Editar</a>
+              <form method="POST" action="/2/periodos/delete">
                 <input type="hidden" name="id" value="<?= $periodo->getId(); ?>">
                 <button type="submit" class="btn btn-danger">Excluir</button>
               </form> 
@@ -44,5 +44,5 @@
 </table>
 
 <div class="pull-right">
-    <a class="btn btn-primary" href="?r=periodos&f=new" role="button">Novo Período</a>
+    <a class="btn btn-primary" href="/2/periodos/new" role="button">Novo Período</a>
 </div>

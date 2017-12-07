@@ -1,0 +1,13 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+
+
+#RewriteRule ^/2/(.*)/(.*) index.php?r=$1&f=$2 [L]
+
+
+
+RewriteRule ^/3/(.*)/(.*)/(.*) index.php?r=$1&f=$2&id=$3 [L]
+
+RewriteRule ^(.*) index.php?r=$1 [L]

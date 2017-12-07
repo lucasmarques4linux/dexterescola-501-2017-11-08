@@ -6,9 +6,10 @@ use DAO\Conexao\Conexao;
 use PDO;
 use Model\Periodo\Periodo;
 use PDOException;
+use DAO\Sql\Sql;
 
 
-class PeriodoDAO
+class PeriodoDAO extends Sql
 {
 
 	private $con = null;
@@ -17,12 +18,9 @@ class PeriodoDAO
 		$this->con = Conexao::getInstance();
 	}
 
-	public function all(){
+	public function allPeriodos(){
 
-		$prepare = $this->con->query("SELECT * FROM tb_periodos ORDER BY id");
-		$prepare->execute();
-
-		$result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+		$result = $this->all("tb_periodos");
 
 		$periodos = [];
 		foreach ($result as $item) {			
@@ -35,27 +33,29 @@ class PeriodoDAO
 		return $periodos;
 	}
 
-	public function insert(Periodo $periodo){
-		$sql = "INSERT INTO tb_periodos (descricao) VALUES (:descricao)";
+	public function insertPeriodo(Periodo $periodo){
+		// $sql = "INSERT INTO tb_periodos (descricao) VALUES (:descricao)";
 
-		strip_tags($periodo->getDescricao());
-		trim($periodo->getDescricao());
+		// strip_tags($periodo->getDescricao());
+		// trim($periodo->getDescricao());
 
-		try {
-			$descricao = $periodo->getDescricao();
-			$this->con->beginTransaction();
-			$stmt = $this->con->prepare($sql);
-			$stmt->bindValue(":descricao", $descricao);
+		// try {
+		// 	$descricao = $periodo->getDescricao();
+		// 	$this->con->beginTransaction();
+		// 	$stmt = $this->con->prepare($sql);
+		// 	$stmt->bindValue(":descricao", $descricao);
 
-			$stmt->execute();
+		// 	$stmt->execute();
 
-			$this->con->commit();	
-			$_SESSION['sucesso'] = "Salvo Com Sucesso";
-		} catch (PDOException $e) {
-			$this->con->rollback();
-			// $this->log("Erro -> {$e->getMessage()}") ;
-			$_SESSION['erro'] = "Erro ao Atualizar Periodo";
-		}
+		// 	$this->con->commit();	
+		// 	$_SESSION['sucesso'] = "Salvo Com Sucesso";
+		// } catch (PDOException $e) {
+		// 	$this->con->rollback();
+		// 	// $this->log("Erro -> {$e->getMessage()}") ;
+		// 	$_SESSION['erro'] = "Erro ao Atualizar Periodo";
+		// }
+
+		$this->insert("tb_periodos",["descricao" => $periodo->getDescricao()]);
 	}
 
 	public function update(Periodo $periodo){

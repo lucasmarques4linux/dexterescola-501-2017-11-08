@@ -6,9 +6,10 @@ use DAO\Conexao\Conexao;
 use PDO;
 use Model\Aluno\Aluno;
 use PDOException;
+use DAO\Sql\Sql;
 
 
-class AlunoDAO
+class AlunoDAO extends Sql
 {
 
 	private $con = null;
@@ -17,13 +18,10 @@ class AlunoDAO
 		$this->con = Conexao::getInstance();
 	}
 
-	public function all(){
+	public function allAlunos(){
 
-		$prepare = $this->con->query("SELECT * FROM tb_alunos ORDER BY id");
-		$prepare->execute();
-
-		$result = $prepare->fetchAll(PDO::FETCH_ASSOC);
-
+		$result = $this->all("tb_alunos");
+		
 		$alunos = [];
 		foreach ($result as $item) {			
 			 $aluno = new Aluno();
@@ -36,38 +34,47 @@ class AlunoDAO
 			 $aluno->setDtNasc($item['dt_nasc']);
 			 $alunos[] = $aluno;
 		}
-
 		return $alunos;
 	}
 
-	public function insert(Aluno $aluno){
-		$sql = "INSERT INTO tb_alunos (nome,email,senha,cpf,rg,dt_nasc) VALUES (:nome,:email,:senha,:cpf,:rg,:dt_nasc)";
+	public function insertAluno(Aluno $aluno){
+		// $sql = "INSERT INTO tb_alunos (nome,email,senha,cpf,rg,dt_nasc) VALUES (:nome,:email,:senha,:cpf,:rg,:dt_nasc)";
 
-		try {
-			$nome = $aluno->getNome();
-			$email = $aluno->getEmail();
-			$senha = $aluno->getSenha();
-			$cpf = $aluno->getCpf();
-			$rg = $aluno->getRg();
-			$dt_nasc = $aluno->getDtNasc();
-			$this->con->beginTransaction();
-			$stmt = $this->con->prepare($sql);
-			$stmt->bindParam(":nome", $nome);
-			$stmt->bindParam(":email", $email);
-			$stmt->bindParam(":senha", $senha);
-			$stmt->bindParam(":cpf", $cpf);
-			$stmt->bindParam(":rg", $rg);
-			$stmt->bindParam(":dt_nasc", $dt_nasc);
+		// try {
+		// 	$nome = $aluno->getNome();
+		// 	$email = $aluno->getEmail();
+		// 	$senha = $aluno->getSenha();
+		// 	$cpf = $aluno->getCpf();
+		// 	$rg = $aluno->getRg();
+		// 	$dt_nasc = $aluno->getDtNasc();
+		// 	$this->con->beginTransaction();
+		// 	$stmt = $this->con->prepare($sql);
+		// 	$stmt->bindParam(":nome", $nome);
+		// 	$stmt->bindParam(":email", $email);
+		// 	$stmt->bindParam(":senha", $senha);
+		// 	$stmt->bindParam(":cpf", $cpf);
+		// 	$stmt->bindParam(":rg", $rg);
+		// 	$stmt->bindParam(":dt_nasc", $dt_nasc);
 
-			$stmt->execute();
+		// 	$stmt->execute();
 
-			$this->con->commit();	
-			$_SESSION['sucesso'] = "Salvo Com Sucesso";
-		} catch (PDOException $e) {
-			$this->con->rollback();
-			// $this->log("Erro -> {$e->getMessage()}") ;
-			$_SESSION['erro'] = "Erro ao Atualizar Periodo";
-		}
+		// 	$this->con->commit();	
+		// 	$_SESSION['sucesso'] = "Salvo Com Sucesso";
+		// } catch (PDOException $e) {
+		// 	$this->con->rollback();
+		// 	// $this->log("Erro -> {$e->getMessage()}") ;
+		// 	$_SESSION['erro'] = "Erro ao Atualizar Periodo";
+		// }
+
+		$params = [
+			"nome" => $aluno->getNome(),
+			"email" => $aluno->getEmail(),
+			"senha" => $aluno->getSenha(),
+			"cpf" => $aluno->getCpf(),
+			"rg" => $aluno->getRg(),
+			"dt_nasc" => $aluno->getDtNasc()
+		];
+		$this->insert("tb_alunos",$params);
 	}
 
 	public function update(Aluno $aluno){

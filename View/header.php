@@ -15,22 +15,22 @@
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="?r=home">Home</a>
+        <a class="nav-link" href="/home">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="?r=alunos">Alunos</a>
+        <a class="nav-link" href="/alunos">Alunos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="?r=matriculas">Matriculas</a>
+        <a class="nav-link" href="/matriculas">Matriculas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="?r=turmas">Turmas</a>
+        <a class="nav-link" href="/turmas">Turmas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="?r=cursos">Cursos</a>
+        <a class="nav-link" href="/cursos">Cursos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="?r=periodos">Periodos</a>
+        <a class="nav-link" href="/periodos">Periodos</a>
       </li>
     </ul>
   </div>

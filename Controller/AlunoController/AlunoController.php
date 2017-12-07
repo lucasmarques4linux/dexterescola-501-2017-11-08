@@ -53,4 +53,11 @@ class AlunoController
 
 		header("location:?r=alunos");
 	}
+
+	public static function jsonall(){
+		$alunos = Aluno::all();
+		foreach ($alunos as $aluno) {
+			# code...
+		}
+	}
 }

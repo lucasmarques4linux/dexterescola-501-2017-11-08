@@ -72,7 +72,7 @@ class Aluno
 	
 	public function insert(){
 		$dao = new AlunoDAO();
-		$dao->insert($this);
+		$dao->insertAluno($this);
 	}
 	public function update(){
 		$dao = new AlunoDAO();
@@ -90,6 +90,10 @@ class Aluno
 
 	public static function all(){
 		$dao = new AlunoDAO();
-		return $dao->all();
+		return $dao->allAlunos();
+	}
+
+	public function __toString(){
+		return "Nome: {$this->getNome()}";
 	}
 }

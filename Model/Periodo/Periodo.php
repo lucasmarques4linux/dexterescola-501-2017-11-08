@@ -37,7 +37,7 @@ class Periodo
 	
 	public function insert(){
 		$dao = new PeriodoDAO();
-		$dao->insert($this);
+		$dao->insertPeriodo($this);
 	}
 	public function update(){
 		$dao = new PeriodoDAO();
@@ -55,6 +55,6 @@ class Periodo
 
 	public static function all(){
 		$dao = new PeriodoDAO();
-		return $dao->all();
+		return $dao->allPeriodos();
 	}
 }
